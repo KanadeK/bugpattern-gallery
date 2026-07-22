@@ -13,6 +13,7 @@ export default [
   {
     ignores: [
       ".next/**",
+      "out/**",
       "next-env.d.ts",
       "coverage/**",
       "dist-release/**",
