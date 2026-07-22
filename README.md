@@ -32,7 +32,7 @@ Ten original exhibits cover races, stale cache, time zones, floating point curre
 
 ## Architecture
 
-The pure, network-free runner is in `src/domain/`; the Next.js client is a thin view over it. Content files in `content/cases/` are checked against the runtime catalogue. No arbitrary code, external API, telemetry, account, or user data is processed.
+The pure, network-free runner is in `src/domain/`; the Next.js client is a thin view over it. Content files in `content/cases/` are checked against the runtime catalogue. Releases contain a static `site/` directory ready for any static host. No arbitrary code, external API, telemetry, account, or user data is processed.
 
 ## Commands
 

@@ -14,7 +14,7 @@ if (git(["status", "--porcelain"]) !== "")
   throw new Error("Release check requires a clean tracked worktree");
 if (!readFileSync(resolve(root, "CHANGELOG.md"), "utf8").includes(`## [${pkg.version}]`))
   throw new Error("CHANGELOG version is missing");
-const archive = resolve(root, "dist-release", `${pkg.name}-${pkg.version}-node.zip`);
+const archive = resolve(root, "dist-release", `${pkg.name}-${pkg.version}-static.zip`);
 if (!existsSync(archive) || !existsSync(resolve(root, "dist-release", "SHA256SUMS.txt")))
   throw new Error("Release artifacts are missing");
 const markerPattern = [
@@ -37,7 +37,11 @@ const identity = git(["log", "-1", "--format=%an <%ae> | %cn <%ce>"]);
 const expected = "KanadeK <121669563+KanadeK@users.noreply.github.com>";
 if (identity !== `${expected} | ${expected}`)
   throw new Error(`Unexpected commit identity: ${identity}`);
-execFileSync(command, ["run", "verify"], { cwd: root, stdio: "inherit" });
+execFileSync(command, ["run", "verify"], {
+  cwd: root,
+  stdio: "inherit",
+  shell: process.platform === "win32",
+});
 console.log(
   "Release check passed: clean tree, version, artifacts, markers, identity, and verification suite.",
 );
