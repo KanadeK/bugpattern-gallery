@@ -1,0 +1,14 @@
+name: Bug report
+description: Report a reproducible exhibit or site problem.
+body:
+  - type: input
+    id: exhibit
+    attributes: { label: Exhibit id }
+  - type: textarea
+    id: reproduction
+    attributes: { label: Reproduction and observed output }
+    validations: { required: true }
+  - type: textarea
+    id: expected
+    attributes: { label: Expected output }
+    validations: { required: true }

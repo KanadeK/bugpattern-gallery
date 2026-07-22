@@ -1,0 +1,11 @@
+name: Feature request
+description: Suggest a scoped, reproducible improvement.
+body:
+  - type: textarea
+    id: problem
+    attributes: { label: Learning problem }
+    validations: { required: true }
+  - type: textarea
+    id: proposal
+    attributes: { label: Proposed behavior and testable acceptance criteria }
+    validations: { required: true }
