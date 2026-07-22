@@ -1,0 +1,152 @@
+:root {
+  color: #f5f0df;
+  background: #102a2b;
+  font-family: Arial, Helvetica, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+}
+.shell {
+  width: min(980px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 56px 0 36px;
+}
+header {
+  border-bottom: 1px solid #547474;
+  margin-bottom: 28px;
+}
+.eyebrow {
+  color: #edb84d;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+  margin: 0;
+}
+.lede {
+  color: #c6d7ce;
+  font-size: 1.15rem;
+  max-width: 670px;
+  margin: 20px 0 32px;
+}
+.selector,
+.workbench,
+.result {
+  background: #173b3c;
+  border: 1px solid #547474;
+  border-radius: 10px;
+  padding: 20px;
+}
+.selector label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+select {
+  background: #f5f0df;
+  border-radius: 5px;
+  border: 0;
+  color: #102a2b;
+  font: inherit;
+  max-width: 100%;
+  padding: 10px;
+  width: 100%;
+}
+.workbench {
+  align-items: center;
+  display: grid;
+  gap: 22px;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  margin-top: 18px;
+}
+h2,
+h3 {
+  margin-top: 0;
+}
+pre {
+  background: #0d2122;
+  border-radius: 6px;
+  overflow-x: auto;
+  padding: 14px;
+}
+.actions {
+  display: grid;
+  gap: 10px;
+}
+button {
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 11px 12px;
+}
+button:focus-visible,
+select:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+.broken {
+  background: #e78b78;
+  color: #2a1110;
+}
+.repaired {
+  background: #82d0a1;
+  color: #082215;
+}
+.both {
+  background: #edb84d;
+  color: #342500;
+}
+.results {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 18px;
+}
+.result {
+  min-height: 160px;
+}
+.result.fail {
+  border-color: #e78b78;
+}
+.result.pass {
+  border-color: #82d0a1;
+}
+.empty {
+  color: #c6d7ce;
+}
+dt {
+  color: #c6d7ce;
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+dd {
+  margin: 3px 0;
+}
+code {
+  color: #edb84d;
+}
+footer {
+  color: #c6d7ce;
+  font-size: 0.85rem;
+  margin-top: 32px;
+}
+@media (max-width: 680px) {
+  .shell {
+    padding-top: 32px;
+  }
+  .workbench,
+  .results {
+    grid-template-columns: 1fr;
+  }
+}
