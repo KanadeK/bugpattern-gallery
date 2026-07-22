@@ -4,6 +4,7 @@ coverage/
 playwright-report/
 test-results/
 dist-release/
+tsconfig.tsbuildinfo
 .env
 .env.*
 !.env.example

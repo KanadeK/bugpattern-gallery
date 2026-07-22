@@ -10,5 +10,13 @@ export default [
     files: ["scripts/**/*.{ts,mjs}"],
     languageOptions: { globals: { console: "readonly", process: "readonly" } },
   },
-  { ignores: [".next/**", "coverage/**", "dist-release/**", "playwright-report/**"] },
+  {
+    ignores: [
+      ".next/**",
+      "next-env.d.ts",
+      "coverage/**",
+      "dist-release/**",
+      "playwright-report/**",
+    ],
+  },
 ];
