@@ -36,14 +36,17 @@ const identity = git(["log", "-1", "--format=%an <%ae> | %cn <%ce>"]);
 const expected = "KanadeK <121669563+KanadeK@users.noreply.github.com>";
 if (identity !== `${expected} | ${expected}`)
   throw new Error(`Unexpected commit identity: ${identity}`);
-execFileSync(
-  process.execPath,
-  [resolve(root, "node_modules", "npm", "bin", "npm-cli.js"), "run", "verify"],
-  {
+const runLockedTool = (relativeTool: string, args: string[]) =>
+  execFileSync(process.execPath, [resolve(root, "node_modules", relativeTool), ...args], {
     cwd: root,
     stdio: "inherit",
-  },
-);
+  });
+runLockedTool("eslint/bin/eslint.js", [".", "--max-warnings=0"]);
+runLockedTool("prettier/bin/prettier.cjs", ["--check", "."]);
+runLockedTool("typescript/bin/tsc", ["--noEmit"]);
+runLockedTool("vitest/vitest.mjs", ["run", "--coverage"]);
+runLockedTool("@playwright/test/cli.js", ["test"]);
+runLockedTool("next/dist/bin/next", ["build"]);
 console.log(
   "Release check passed: clean tree, version, artifacts, markers, identity, and verification suite.",
 );
