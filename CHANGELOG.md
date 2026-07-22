@@ -7,3 +7,4 @@
 - Package the already-verified static production build instead of performing an unnecessary second build.
 - Hardened the release check against self-matching marker patterns.
 - Run release validation through the repository's `verify` entrypoint for platform compatibility.
+- Updated Next.js, Playwright, and Next's transitive PostCSS/Sharp dependencies to clear production audit findings.
