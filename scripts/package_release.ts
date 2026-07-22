@@ -20,20 +20,15 @@ const pkg = JSON.parse(readFileSync(resolve(root, "package.json"), "utf8")) as {
 const releaseDir = resolve(root, "dist-release");
 const stageDir = resolve(releaseDir, `${pkg.name}-${pkg.version}-static`);
 const archive = resolve(releaseDir, `${pkg.name}-${pkg.version}-static.zip`);
-const command = process.platform === "win32" ? "npm.cmd" : "npm";
 
 function run(file: string, args: string[]) {
-  execFileSync(file, args, {
-    cwd: root,
-    stdio: "inherit",
-    shell: process.platform === "win32" && file === "npm.cmd",
-  });
+  execFileSync(file, args, { cwd: root, stdio: "inherit" });
 }
 
 rmSync(releaseDir, { recursive: true, force: true });
 if (!existsSync(resolve(root, "out", "index.html")))
   throw new Error("Production build is missing; run npm run build before packaging");
-run(command, ["run", "demo"]);
+run(process.execPath, [resolve(root, "node_modules", "tsx", "dist", "cli.mjs"), "scripts/demo.ts"]);
 mkdirSync(stageDir, { recursive: true });
 for (const file of ["package.json", "package-lock.json", "README.md", "LICENSE", "CHANGELOG.md"])
   cpSync(resolve(root, file), resolve(stageDir, file));

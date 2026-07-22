@@ -7,7 +7,6 @@ const pkg = JSON.parse(readFileSync(resolve(root, "package.json"), "utf8")) as {
   name: string;
   version: string;
 };
-const command = process.platform === "win32" ? "npm.cmd" : "npm";
 const git = (args: string[]) => execFileSync("git", args, { cwd: root, encoding: "utf8" }).trim();
 
 if (git(["status", "--porcelain"]) !== "")
@@ -22,8 +21,8 @@ const markerPattern = [
   "FIX" + "ME",
   "Not" + "Implemented",
   "place" + "holder",
-  "coming soon",
-  "lorem ipsum",
+  "coming " + "soon",
+  "lorem " + "ipsum",
 ].join("|");
 const markerSearch = spawnSync("git", ["grep", "-nE", markerPattern, "--", ":!docs/ROADMAP.md"], {
   cwd: root,
@@ -37,11 +36,14 @@ const identity = git(["log", "-1", "--format=%an <%ae> | %cn <%ce>"]);
 const expected = "KanadeK <121669563+KanadeK@users.noreply.github.com>";
 if (identity !== `${expected} | ${expected}`)
   throw new Error(`Unexpected commit identity: ${identity}`);
-execFileSync(command, ["run", "verify"], {
-  cwd: root,
-  stdio: "inherit",
-  shell: process.platform === "win32",
-});
+execFileSync(
+  process.execPath,
+  [resolve(root, "node_modules", "npm", "bin", "npm-cli.js"), "run", "verify"],
+  {
+    cwd: root,
+    stdio: "inherit",
+  },
+);
 console.log(
   "Release check passed: clean tree, version, artifacts, markers, identity, and verification suite.",
 );
