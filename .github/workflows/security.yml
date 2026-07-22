@@ -14,4 +14,4 @@ jobs:
         with: { node-version: 22, cache: npm }
       - run: npm ci
       - run: npm audit --omit=dev --audit-level=high
-      - run: "! git grep -nEI '(ghp_|github_pat_|AKIA[0-9A-Z]{16}|BEGIN [A-Z ]*PRIVATE KEY)'"
+      - run: "! git grep -nEI '(ghp_|github_pat_|AKIA[0-9A-Z]{16}|BEGIN [A-Z ]*PRIVATE KEY)' -- ':!.github/workflows/security.yml'"
